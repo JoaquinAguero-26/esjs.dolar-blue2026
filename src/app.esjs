@@ -1,3 +1,4 @@
+importar { Terminal } desde '@es-js/terminal'
 importar { validarSecreto } desde 'https://desarrollo-aplicaciones.vercel.app/2024/code/validar-secreto.js'
 importar { obtenerJson } desde 'https://desarrollo-aplicaciones.vercel.app/2024/code/obtener-json.js'
 
@@ -16,10 +17,3 @@ si (esperar validarSecreto(dni, palabra)) {
 
   Terminal.escribir("Cotización del Dolar Blue")
   Terminal.escribir("Venta: $" + dolar.venta)
-  Terminal.escribir("Compra: $" + dolar.compra)
-  Terminal.escribir("Promedio: $" + (dolar.compra + dolar.venta) / 2)
-  Terminal.escribir("Fecha de la cotización: " + fechaCotizacion)
-  Terminal.escribir("Fecha de la consulta: " + fechaConsulta)
-} sino {
-  Terminal.escribir("DNI o palabra secreta incorrectos")
-}
