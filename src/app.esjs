@@ -12,8 +12,11 @@ Terminal.escribir("Cargando...")
 
 si (esperar validarSecreto(dni, palabra)) {
   const dolar = esperar obtenerJson("https://dolarapi.com/v1/dolares/blue")
-  const fechaCotizacion = new Date(dolar.fechaActualizacion).toLocaleString()
-  const fechaConsulta = new Date().toLocaleString()
 
   Terminal.escribir("Cotización del Dolar Blue")
   Terminal.escribir("Venta: $" + dolar.venta)
+  Terminal.escribir("Compra: $" + dolar.compra)
+  Terminal.escribir("Promedio: $" + (dolar.compra + dolar.venta) / 2)
+} sino {
+  Terminal.escribir("DNI o palabra secreta incorrectos")
+}
