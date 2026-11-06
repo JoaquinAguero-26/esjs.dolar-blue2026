@@ -1,8 +1,5 @@
-importar { Terminal } desde "@es-js/terminal"
-
-import { Terminal } from '@es-js/terminal'
-import { validarSecreto } from 'https://desarrollo-aplicaciones.vercel.app/2024/code/validar-secreto.js'
-import { obtenerJson } from 'https://desarrollo-aplicaciones.vercel.app/2024/code/obtener-json.js'
+importar { validarSecreto } desde 'https://desarrollo-aplicaciones.vercel.app/2024/code/validar-secreto.js'
+importar { obtenerJson } desde 'https://desarrollo-aplicaciones.vercel.app/2024/code/obtener-json.js'
 
 Terminal.escribir("Ingresa tu DNI:")
 const dni = esperar Terminal.leer()
@@ -12,12 +9,17 @@ const palabra = esperar Terminal.leer()
 
 Terminal.escribir("Cargando...")
 
-if (esperar validarSecreto(dni, palabra)) {
+si (esperar validarSecreto(dni, palabra)) {
   const dolar = esperar obtenerJson("https://dolarapi.com/v1/dolares/blue")
+  const fechaCotizacion = new Date(dolar.fechaActualizacion).toLocaleString()
+  const fechaConsulta = new Date().toLocaleString()
 
+  Terminal.escribir("Cotización del Dolar Blue")
   Terminal.escribir("Venta: $" + dolar.venta)
   Terminal.escribir("Compra: $" + dolar.compra)
   Terminal.escribir("Promedio: $" + (dolar.compra + dolar.venta) / 2)
-} else {
+  Terminal.escribir("Fecha de la cotización: " + fechaCotizacion)
+  Terminal.escribir("Fecha de la consulta: " + fechaConsulta)
+} sino {
   Terminal.escribir("DNI o palabra secreta incorrectos")
 }
